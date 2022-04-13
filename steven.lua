@@ -3,9 +3,9 @@
 --]]
 URL     = require("./libs/url")
 JSON    = require("./libs/dkjson")
-serpent = require("libs/serpent")
-json = require('libs/json')
-Redis = require('libs/redis').connect('127.0.0.1', 6379)
+serpent = require("./libs/serpent")
+json = require('./libs/json')
+Redis = require('./libs/redis').connect('127.0.0.1', 6379)
 http  = require("socket.http")
 https   = require("ssl.https")
 local Methods = io.open("./luatele.lua","r")
