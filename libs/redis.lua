@@ -261,34 +261,7 @@ end
 function network.read(client, len)
     if len == nil then len = '*l' end
     local line, err = client.network.socket:receive(len)
-    if not err then return line else
-	local TokenBot = io.open('./inc/Token.txt', "r"):read('*a')
-print("\27[34m"..[[
-
->> Best Source in Telegram
->> Features fast and powerful
-
- ░██████╗██████╗░██╗░░░██╗██████╗░███████╗██████╗░ 
- ██╔════╝██╔══██╗╚██╗░██╔╝██╔══██╗██╔════╝██╔══██╗
- ╚█████╗░██████╔╝░╚████╔╝░██║░░██║█████╗░░██████╔╝
- ░╚═══██╗██╔═══╝░░░╚██╔╝░░██║░░██║██╔══╝░░██╔══██╗
- ██████╔╝██║░░░░░░░░██║░░░██████╔╝███████╗██║░░██║
- ╚═════╝░╚═╝░░░░░░░░╚═╝░░░╚═════╝░╚══════╝╚═╝░░╚═╝
-
- ⌔︙- Done Installations Source Spyder 
- ⌔︙- Thanks For your use Source Spyder
- ══════════════════════════════    
-
-]].."\27[m")
-sudos = dofile("sudo.lua")
-if Sudo then
-https = require("ssl.https")
-URL = require("./File_Libs/url.lua")  
-https.request('https://api.telegram.org/bot'..token..'/sendMessage?chat_id='..Sudo..'&text='..URL.escape("⚡┇لقد توقف البوت بسبب انهاير الريدز افتح ترمنال وارسل \n`service redis start` ")..'&parse_mode=Markdown')
-end
-os.exit()
---client.error('connection error: ' .. err) 
-end
+    if not err then return line else client.error('connection error: ' .. err) end
 end
 
 -- ############################################################################
@@ -788,26 +761,8 @@ local function connect_tcp(socket, parameters)
     local host, port = parameters.host, tonumber(parameters.port)
     local ok, err = socket:connect(host, port)
     if not ok then
-	print("\27[34m"..[[
-
->> Best Source in Telegram
->> Features fast and powerful
-
- ░██████╗██████╗░██╗░░░██╗██████╗░███████╗██████╗░ 
- ██╔════╝██╔══██╗╚██╗░██╔╝██╔══██╗██╔════╝██╔══██╗
- ╚█████╗░██████╔╝░╚████╔╝░██║░░██║█████╗░░██████╔╝
- ░╚═══██╗██╔═══╝░░░╚██╔╝░░██║░░██║██╔══╝░░██╔══██╗
- ██████╔╝██║░░░░░░░░██║░░░██████╔╝███████╗██║░░██║
- ╚═════╝░╚═╝░░░░░░░░╚═╝░░░╚═════╝░╚══════╝╚═╝░░╚═╝
-
- ⌔︙- Done Installations Source Spyder 
- ⌔︙- Thanks For your use Source Spyder
- ══════════════════════════════    
- 
-]].."\27[m")
-	os.exit()
-    --redis.error('could not connect to '..host..':'..port..' ['..err..']')
-    end 
+        redis.error('could not connect to '..host..':'..port..' ['..err..']')
+    end
     socket:setoption('tcp-nodelay', parameters.tcp_nodelay)
     return socket
 end
